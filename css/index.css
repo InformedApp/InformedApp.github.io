@@ -142,21 +142,19 @@ h1 {
                 left: 0px;
                 top: 0px;
                 position: absolute;
-/*                background-color: rgb(235,235,235);*/
-                 background-color: #FAFAFA;
+                background-color: #FAFAFA;
+          
 
               }
               #core_toolbar {
                 color: rgb(255, 255, 255);
-               /* background-color: #333333*/
-             background-color: #009688; /*teal color */
+                background-color: #009688; /*teal color */
                   
               }
               #main_section {
                 height: 100%;
-                /*                background-color: rgb(235,235,235);*/
-/*                 background-color: #FAFAFA;*/
-                                   background-color: #FAFAFA;
+                background-color: #FAFAFA;
+                width:100%;
 
 
                   
@@ -204,11 +202,13 @@ h1 {
             table{
                 box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 4px, rgba(0, 0, 0, 0.0980392) 0px 0px 3px;
                 background-color:white;
-                width:100%;
 
             }
             
             #clearBtn{
+                position:fixed;
+                    bottom:3%;
+                    right: 3%;
                 background-color: #009688;
                 color:white;
             }     
@@ -231,11 +231,7 @@ h1 {
             #table_text{
                 float: right;
             }
-            
-            #drug_t{   
-/*                padding-right: 15%;*/
-            }
-            
+
             .list_text{
                 margin-top: 5%;
             }
