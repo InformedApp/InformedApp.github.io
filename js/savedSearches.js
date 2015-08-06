@@ -1,10 +1,17 @@
+
 var checkBtn = false;
 
+
+
 function enableBtn(){
-    if(checkBtn == true){   document.getElementById("saveBtn").disabled = false;
+    if(checkBtn == true){   
+        document.getElementById("saveBtn").disabled = false;
     }
 }
 
+$("#saveBtn").click(function(){
+    document.getElementById("saveBtn").disabled = true;
+});
 /*function savedSearches(){
         addDrug();  
  }*/
@@ -32,8 +39,11 @@ function enableBtn(){
                /* '<td><a href="#" id="remove_drug" data-id="'+ value.id +'">Clear</a> | <a href="infoPage.html?id="'+ value.id +'" id="more_info" data-id="'+ value.id +'">View Info</a></td>' +
                 '</tr>');*/
                                         
-                '<td><a href="#" id="remove_drug" data-id="'+ value.id +'"><core-icon id="delete" icon="delete"></core-icon></a>  <a href="infoPage.html?id="'+ value.id +'" id="more_info" data-id="'+ value.id +'"><core-icon id="moreInfo" icon="info"></core-icon></a></td>' +
+
+                '<td><a href="#" id="remove_drug" data-id="'+ value.id +'"><core-icon id="delete" icon="delete"></core-icon></a>  <a href="infoPage.html?id="'+ value.id +'" id="more_info" data-id="'+ value.id +'"> <core-icon id="moreInfo" icon="info"></core-icon></a></td>' +
                 '</tr>');
+
+
                 
               //  alert(value.brand);
                 
@@ -86,8 +96,10 @@ function enableBtn(){
             
         var instructs = document.getElementById("instructions").innerHTML;
         //Simple Validation
+            
+            
         if(id == ''){
-            alert('drug name is required');
+            
             e.preventDefault();
         } else{
             
@@ -105,8 +117,10 @@ function enableBtn(){
             
             //loop to make sure we have the correct drug name to delete
         for(var i=0; i < drugList.length; i++){
-            if(drugList[i].id == id){
-               alert(id+" is already saved in your list.");
+            if(drugList[i].brand == brandNm){
+    
+                
+                 document.querySelector('#error_savetoast').show();
                 e.preventDefault();
                 return;
             }
@@ -139,13 +153,14 @@ function enableBtn(){
          
             console.log("save button disabled");                
             checkBtn = false;    
+            document.querySelector('#savetoast').show();
         }
     }
     }
 
     //Function to remove drug
     function removeDrug(id){
-      if(confirm('Are you sure you want to delete this saved drug?')){
+    
          var drugList = JSON.parse(localStorage.getItem('drugs')); 
         
         //loop to make sure we have the correct drug name to delete
@@ -163,19 +178,18 @@ function enableBtn(){
         
         }
 
-    }
-                
-     
-        
+    
+  
         
     //Function to clear all save drugs
-    function clearAllDrugs(){
-        if(confirm('Are you sure you want to delete all drugs?')){
+    function clearAllDrugs(){ 
          localStorage.clear('drugs');
            //localStorage.clear();
             location.reload();             
-        }
+        
     }
+
+
 
 
 

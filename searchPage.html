@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>        
-        
+    <head>  
+             
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
         <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
-        <script src="components/bower_components/webcomponentsjs/webcomponents.js"></script>
-
-        <link rel="import" href="components/bower_components/core-scaffold/core-scaffold.html">
+        <meta name="apple-mobile-web-app-capable" content="yes">  
+        <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script> 
+         <script src="components/bower_components/webcomponentsjs/webcomponents.js"></script>
         <link rel="import" href="components/bower_components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="components/bower_components/core-menu/core-menu.html">
-        <link rel="import" href="components/bower_components/core-item/core-item.html">
-        <link rel="import" href="components/bower_components/paper-toast/paper-toast.html">
-        <link rel="import" href="components/bower_components/paper-input/paper-input.html">                         
+        <link rel="import" href="components/bower_components/core-toolbar/core-toolbar.html"> 
+        <link rel="import" href="components/bower_components/paper-input/paper-input.html">             
         <link rel="import" href="components/bower_components/paper-icon-button/paper-icon-button.html">
-        <link rel="import" href="components/paper-shadow/paper-shadow.html">
+        <link rel="import" href="components/bower_components/core-collapse/core-collapse.html">
+        <link rel="import" href="components/bower_components/paper-toast/paper-toast.html">
         <link rel="import" href="components/bower_components/paper-fab/paper-fab.html"> 
-        <link rel = "import" href="components/bower_components/core-toolbar/core-toolbar.html">  
-        
+         
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/searchLink.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type=text/javascript src="js/savedSearches.js"></script>
         <script type=text/javascript src="js/displaySavedSearches.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/searchLink.js"></script>
-
-        
-        <link rel="import" href="components/bower_components/polymer/polymer.html">
-        <link rel="import" href="components/bower_components/core-icon-button/core-icon-button.html">
-        <link rel="import" href="components/bower_components/core-toolbar/core-toolbar.html">
-        <link rel="import" href="components/bower_components/core-input/core-input.html">
-        <link rel="import" href="components/bower_components/core-collapse/core-collapse.html">
-        <link rel="import" href="components/bower_components/paper-fab/paper-fab.html"> 
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-
-
+       
+        <script>
+       function hide_collapse(){
+           
+            $(".heading").hide();
+            }
+        
+        </script>
+        
     <style>    
         
             html, body{
@@ -113,6 +109,9 @@
                     right: 3%;
                 background-color:#FFC107; /* yellow collor*/
                 }
+            paper-input {
+                width:90%;
+          }
 
              .custom /deep/ ::-webkit-input-placeholder {
                     color: #FFECB3;                
@@ -128,6 +127,7 @@
                 }
 
             #backBtn{
+                padding-top: 1.5%;
                 float:left;
                 color:white;
             }
@@ -135,36 +135,45 @@
             .carrot{
                 float:right;
             }
-         paper-input {
-        width: 100%;
-      }
+         
+            .core-header {
+                height:60px;
+                padding-left: 1%;
+                padding-top:0px;
+                background-color: #009688; /*teal color */
+            }
         a:active,
         element.addEventListener('touchstart',function(e) {
             e.currentTarget.className = "active";
         });
+        
+        
+        
+        
     </style>
         
  
 </head>
     
-    <body>
+    <body onload="hide_collapse()">
         
-        
-       
-        
-
         <core-header-panel mode="standard" id="core_header_panel">
-            
             <core-toolbar id="core_toolbar">
                    <a href= "index.html" ><paper-icon-button icon="arrow-back" id="backBtn" flex></paper-icon-button></a>  
                    <div flex>
-                         <paper-input class="custom" label="Search Medication" id="searchValue"></paper-input>               
+                         <paper-input class="custom" label="Type Brand Name Here" id="searchValue"></paper-input>               
                    </div>
             <paper-icon-button id="searchBtn" icon="search" onclick="return enableBtn()"></paper-icon-button>           
             </core-toolbar>            
+
+             
+            
+            
+            
             <section id="section">
                    <div id="main">
-                       
+                       <div class="core_headers" hide>
+
 <!--                       header of dropdown menu onclick will toggle the selected collapse menu-->
                         <div class="heading" onclick="document.querySelector('#collapse1').toggle();">Brand Name <core-icon icon="arrow-drop-down" class="carrot"></core-icon></div>
                         
@@ -225,21 +234,28 @@
                              </core-collapse> 
                        
                             
-                     </div>
+                       </div>
+                </div>
 
                 </section>
            
 
         </core-header-panel>
+        
+          <paper-action-dialog id="#dialog2" backdrop autoCloseDisabled layered="false">
+                <p id="saveMsg">Drug previously saved</p>
+                  <paper-button affirmative autofocus>Tap me to close</paper-button>
+                </paper-action-dialog>
        
 
         <div>
-            <paper-fab id="saveBtn" icon="save" disabled></paper-fab></div>
+            <paper-fab id="saveBtn" icon="save" disabled></paper-fab>
+            
+        </div>
         
-        
-        <paper-toast id="errortoast" text="Error. Invalid Input"></paper-toast>
-        
-        <paper-toast id="errortoast" text="Drug not found."></paper-toast>
+        <paper-toast id="errortoast" text="Error: Drug Not Found."></paper-toast>
+        <paper-toast id="savetoast" text="Drug Saved!"></paper-toast>
+        <paper-toast id="error_savetoast" text="Drug previously saved."></paper-toast>
 
     </body>
 </html>

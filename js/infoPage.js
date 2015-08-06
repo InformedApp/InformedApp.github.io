@@ -17,6 +17,10 @@ $(document).ready(function() {
     $("#warnings").html(specific_drug.warnings);
     
     $("#instructions").html(specific_drug.instructions);
+    
+    document.querySelector('#collapse1').toggle();
+    
+    document.querySelector('#collapse2').toggle()
 });
 
 

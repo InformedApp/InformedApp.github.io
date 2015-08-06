@@ -8,25 +8,12 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
         <script src="components/bower_components/webcomponentsjs/webcomponents.js"></script>
-
-        <link rel="import" href="components/bower_components/core-scaffold/core-scaffold.html">
         <link rel="import" href="components/bower_components/core-header-panel/core-header-panel.html">
-        <link rel="import" href="components/bower_components/core-menu/core-menu.html">
-        <link rel="import" href="components/bower_components/core-item/core-item.html">
-                               
-        <link rel="import" href="components/bower_components/paper-icon-button/paper-icon-button.html">
-        <!-- not working ? <link rel="import" href="components/paper-shadow/paper-shadow.html"> -->
-        
-        <link rel = "import" href="components/bower_components/core-toolbar/core-toolbar.html">  
-        
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/savedSearches.js"></script>
-        <script type="text/javascript" src="js/displaySavedSearches.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
-        <script type="text/javascript" src="js/infoPage.js"></script>
+<!--        <link rel = "import" href="components/bower_components/core-toolbar/core-toolbar.html">  -->
 
-        
-        <link rel="import" href="components/bower_components/polymer/polymer.html">
+                               
+        <link rel="import" href="components/bower_components/paper-icon-button/paper-icon-button.html">              
+<!--        <link rel="import" href="components/bower_components/polymer/polymer.html">-->
         <link rel="import" href="components/bower_components/core-icon-button/core-icon-button.html">
         
         <link rel="import" href="components/bower_components/core-input/core-input.html">
@@ -35,7 +22,11 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link rel="import" href="components/bower_components/core-icons/core-icons.html">
-        <!-- not working ?<link rel="import" href="components/bower_components/paper-shadow/paper-shadow.html">-->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/savedSearches.js"></script>
+        <script type="text/javascript" src="js/displaySavedSearches.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+        <script type="text/javascript" src="js/infoPage.js"></script>
 
     <style>    
         
@@ -129,6 +120,7 @@
                 }
 
             #backBtn{
+                padding-top: 15px;
                 float:left;
                 color:white;
             }
@@ -139,6 +131,19 @@
          paper-input {
         width: 100%;
       }
+        
+        .core-header {
+                height:60px;
+                line-height: 60px;
+                padding-left: 1%;
+                padding-top:1px;
+                background-color: #009688; /*teal color */
+                
+              }
+        
+        #title{
+            color:white;
+        }
         a:active,
         element.addEventListener('touchstart',function(e) {
             e.currentTarget.className = "active";
@@ -156,13 +161,12 @@
 
         <core-header-panel mode="standard" id="core_header_panel">
             
-            <core-toolbar id="core_toolbar">
+                <div class="core-header">
                    <a href= "index.html" ><paper-icon-button icon="arrow-back" id="backBtn" flex></paper-icon-button></a>  
-                   <div flex id = "title">
-                                        
-                   </div>
+                   <h3 flex id = "title"></h3>
                     
-            </core-toolbar>            
+                </div>            
+            
             <section id="section">
                    <div id="main">
                        
